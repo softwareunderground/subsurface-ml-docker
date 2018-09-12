@@ -41,7 +41,8 @@ The fastest way to start is to pull the image from dockerhub. Note this can stil
     1. mapping a local folder - change the `<insert-local-path>` for a valid local path to your source code directory containing repos, notebooks etc that you want to run. That folder will mounted at `/home/geo/workspace` on the continer
     1. map additional folders - add additional `-v <insert-local-path>:/home/geo/<mount-folder>` arguments to the commamnd to mount additional folders on the container
 
- 1. connect to jupyter lab - when the container starts, you'll see a message on the console such as 
+ 1. connect to jupyter lab - browse to `http://<your-instance-ip>:8888/lab` and enter the password `softwareunderground` when prompted
+    1. `http://<your-instance-ip>:8888/tree` if you don't want the lab interface
 
 
 # Start from a local build (unbuntu/linux)
