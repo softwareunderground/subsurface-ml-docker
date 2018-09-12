@@ -62,7 +62,7 @@ RUN pip install https://cntk.ai/PythonWheel/GPU/cntk-2.1-cp36-cp36m-linux_x86_64
 RUN pip install --no-cache-dir Cython
 
 ## Base Python Packages
-RUN conda install \
+RUN conda install -c conda-forge \
     bcolz \
     h5py \
     matplotlib \
@@ -71,13 +71,14 @@ RUN conda install \
     notebook \
     pygpu \
     pyyaml \
-    six
+    six \
+    jupyterlab
 
 RUN pip install \
     python-dotenv
 
 ## Data Science
-RUN conda install \
+RUN conda install -c conda-forge \
     numpy \
     scipy \
     pandas \
@@ -87,12 +88,12 @@ RUN conda install \
     networkx
 
 ## Image Processing
-RUN conda install \
+RUN conda install -c conda-forge \
     Pillow \
     scikit-image
 
 ## ML Packages
-RUN conda install \
+RUN conda install -c conda-forge \
     scikit-learn \
     six \
     theano
@@ -117,7 +118,8 @@ RUN pip install \
 
 
 ### Torch (Because you're special)
-RUN conda install pytorch torchvision cuda90 -c pytorch \
+RUN conda install -c conda-forge \
+    pytorch torchvision cuda90 -c pytorch \
     && conda clean -ya
 
 RUN pip install git+https://github.com/pytorch/tnt.git@master
@@ -127,7 +129,7 @@ RUN git clone git://github.com/keras-team/keras.git /src && pip install -e /src[
     pip install git+git://github.com/keras-team/keras.git
 
 ## Geo Packages
-RUN conda install \
+RUN conda install -c conda-forge \
     geopandas \
     shapely \
     dask
@@ -160,4 +162,4 @@ EXPOSE 6006
 # Jupyter / iPython
 EXPOSE 8888
 
-CMD jupyter notebook --port=8888 --ip=0.0.0.0
+CMD jupyter lab --port=8888 --ip=0.0.0.0

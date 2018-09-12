@@ -7,7 +7,6 @@ env:
   - KERAS_BACKEND=tensorflow
   - KERAS_BACKEND=theano
 python:
-  - 2.7
   - 3.6
 services:
   - docker
