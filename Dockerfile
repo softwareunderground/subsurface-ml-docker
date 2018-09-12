@@ -62,7 +62,7 @@ RUN pip install https://cntk.ai/PythonWheel/GPU/cntk-2.1-cp36-cp36m-linux_x86_64
 RUN pip install --no-cache-dir Cython
 
 ## Base Python Packages
-RUN conda install \
+RUN conda install -c conda-forge \
     bcolz \
     h5py \
     matplotlib \
@@ -71,28 +71,34 @@ RUN conda install \
     notebook \
     pygpu \
     pyyaml \
-    six
+    six \
+    jupyterlab
 
 RUN pip install \
     python-dotenv
 
-## Data Science
-RUN conda install \
+## Data Science & Viz
+RUN conda install -c conda-forge \
     numpy \
     scipy \
     pandas \
     tqdm \
     colorcet \
     seaborn \
-    networkx
+    networkx \
+    bokeh \
+    datashader
+
+RUN conda install -c ioam holoviews
+RUN conda install -c pyviz geoviews
 
 ## Image Processing
-RUN conda install \
+RUN conda install -c conda-forge \
     Pillow \
     scikit-image
 
 ## ML Packages
-RUN conda install \
+RUN conda install -c conda-forge \
     scikit-learn \
     six \
     theano
@@ -117,7 +123,8 @@ RUN pip install \
 
 
 ### Torch (Because you're special)
-RUN conda install pytorch torchvision cuda90 -c pytorch \
+RUN conda install -c conda-forge \
+    pytorch torchvision cuda90 -c pytorch \
     && conda clean -ya
 
 RUN pip install git+https://github.com/pytorch/tnt.git@master
@@ -127,7 +134,7 @@ RUN git clone git://github.com/keras-team/keras.git /src && pip install -e /src[
     pip install git+git://github.com/keras-team/keras.git
 
 ## Geo Packages
-RUN conda install \
+RUN conda install -c conda-forge \
     geopandas \
     shapely \
     dask
@@ -142,7 +149,7 @@ RUN pip install \
     fiona \
     rasterio \
     simpeg \
-    lasio \
+    git+https://github.com/kinverarity1/lasio.git@master \
     mplstereonet
 
 ## Package install over
@@ -150,14 +157,16 @@ RUN pip install \
 RUN conda clean -yt
 
 ADD theanorc /home/$NB_USER/.theanorc
+ADD jupyter_notebook_config.py /home/$NB_USER/.jupyter/jupyter_notebook_config.py
+COPY smoke.py /home/$NB_USER/smoke.py
 
 ENV PYTHONPATH='/src/:$PYTHONPATH'
 
-WORKDIR /src
+WORKDIR /home/$NB_USER
 
 # Tensorboard
 EXPOSE 6006
 # Jupyter / iPython
 EXPOSE 8888
 
-CMD jupyter notebook --port=8888 --ip=0.0.0.0
+CMD jupyter lab --port=8888 --ip=0.0.0.0
