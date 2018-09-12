@@ -1,4 +1,3 @@
-set src=E:\Development\euclidity
-set data=E:\Data
+set src=C:\development
 set backend=tensorflow
-docker run -it -p 0.0.0.0:8888:8888 -v %src%:/src/workspace -v %data%:/src/workspace/data --env KERAS_BACKEND=%backend% geoml
+docker run -it -p 0.0.0.0:8888:8888 -v %src%:/src/workspace --env KERAS_BACKEND=%backend% subsurface-ml-docker

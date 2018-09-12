@@ -87,7 +87,7 @@ RUN conda install -c conda-forge \
     seaborn \
     networkx \
     bokeh \
-    datashader \
+    datashader
 
 RUN conda install -c ioam holoviews
 RUN conda install -c pyviz geoviews
@@ -157,6 +157,7 @@ RUN pip install \
 RUN conda clean -yt
 
 ADD theanorc /home/$NB_USER/.theanorc
+ADD jupyter_notebook_config.py /home/$NB_USER/.jupyter/jupyter_notebook_config.py
 COPY smoke.py /home/$NB_USER/smoke.py
 
 ENV PYTHONPATH='/src/:$PYTHONPATH'

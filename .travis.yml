@@ -12,11 +12,11 @@ services:
   - docker
 stage: Build Docker image
 
-install: docker build --build-arg python_version=$TRAVIS_PYTHON_VERSION -t subsurface-ml-docker -f Dockerfile .
+install: docker build --build-arg python_version=$TRAVIS_PYTHON_VERSION -t geo-docker -f Dockerfile .
 
 stage: Test
 
-script:  docker run -it -p 8888:8888 --env KERAS_BACKEND=$KERAS_BACKEND subsurface-ml-docker 
+script:  docker run -it -p 8888:8888 --env KERAS_BACKEND=$KERAS_BACKEND geo-docker 
 
 jobs:
   include:

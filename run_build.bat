@@ -1,1 +1,1 @@
-docker build -t geoml -f Dockerfile .
+docker build -t subsurface-ml-docker -f Dockerfile .
