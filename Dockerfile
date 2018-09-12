@@ -144,7 +144,7 @@ RUN pip install \
     fiona \
     rasterio \
     simpeg \
-    lasio \
+    git+https://github.com/kinverarity1/lasio.git@master \
     mplstereonet
 
 ## Package install over
