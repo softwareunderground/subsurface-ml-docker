@@ -5,18 +5,17 @@ language: python
 
 env:
   - KERAS_BACKEND=tensorflow
-  - KERAS_BACKEND=theano
 python:
   - 3.6
 services:
   - docker
 stage: Build Docker image
 
-install: docker build --build-arg python_version=$TRAVIS_PYTHON_VERSION -t geo-docker -f Dockerfile .
+install: docker build --build-arg python_version=$TRAVIS_PYTHON_VERSION -t subsurface-ml-docker -f Dockerfile .
 
 stage: Test
 
-script:  docker run -it -p 8888:8888 --env KERAS_BACKEND=$KERAS_BACKEND geo-docker 
+script:  docker run -it -p 8888:8888 --env KERAS_BACKEND=$KERAS_BACKEND subsurface-ml-docker python smoke.py
 
 jobs:
   include:
@@ -25,8 +24,8 @@ jobs:
       before_script: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       script: 
       - docker images
-      - docker tag geo-docker softwareunderground/geo-docker
-      - docker push softwareunderground/geo-docker
+      - docker tag subsurface-ml-docker softwareunderground/subsurface-ml-docker
+      - docker push softwareunderground/subsurface-ml-docker
       branch: master
       python: 3.6
       env: KERAS_BACKEND=tensorflow
