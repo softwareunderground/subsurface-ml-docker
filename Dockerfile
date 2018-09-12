@@ -152,10 +152,11 @@ RUN pip install \
 RUN conda clean -yt
 
 ADD theanorc /home/$NB_USER/.theanorc
+COPY smoke.py /home/$NB_USER/smoke.py
 
 ENV PYTHONPATH='/src/:$PYTHONPATH'
 
-WORKDIR /src
+WORKDIR /home/$NB_USER
 
 # Tensorboard
 EXPOSE 6006

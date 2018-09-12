@@ -13,17 +13,16 @@ TEST=tests/
 SRC?=$(shell dirname `pwd`)
 
 build:
-	docker build -t geoml --build-arg python_version=$(PYTHON_VERSION) -f $(DOCKER_FILE) . 
+	docker build -t subsurface-ml-docker --build-arg python_version=$(PYTHON_VERSION) -f $(DOCKER_FILE) . 
 
 bash: build
-	$(DOCKER) run -it -v $(SRC):/src/workspace -v $(DATA):/src/workspace/data --env KERAS_BACKEND=$(BACKEND) geoml bash
+	$(DOCKER) run -it -v $(SRC):/home/geo/workspace --env KERAS_BACKEND=$(BACKEND) subsurface-ml-docker bash
 
 ipython: build
-	$(DOCKER) run -it -v $(SRC):/src/workspace -v $(DATA):/src/workspace/data --env KERAS_BACKEND=$(BACKEND) geoml ipython
+	$(DOCKER) run -it -v $(SRC):/home/geo/workspace --env KERAS_BACKEND=$(BACKEND) subsurface-ml-docker ipython
 
 notebook: build
-	$(DOCKER) run -it -v $(SRC):/src/workspace -v $(DATA):/src/workspace/data --net=host --env KERAS_BACKEND=$(BACKEND) geoml
+	$(DOCKER) run -it -v $(SRC):/home/geo/workspace --net=host --env KERAS_BACKEND=$(BACKEND) subsurface-ml-docker
 
 test: build
-	$(DOCKER) run -it -v $(SRC):/src/workspace -v $(DATA):/src/workspace/data --env KERAS_BACKEND=$(BACKEND) geoml py.test $(TEST)
-
+	$(DOCKER) run -it -v $(SRC):/home/geo/workspace --env KERAS_BACKEND=$(BACKEND) subsurface-ml-docker smoke.py $(TEST)
