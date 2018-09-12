@@ -77,7 +77,7 @@ RUN conda install -c conda-forge \
 RUN pip install \
     python-dotenv
 
-## Data Science
+## Data Science & Viz
 RUN conda install -c conda-forge \
     numpy \
     scipy \
@@ -85,7 +85,12 @@ RUN conda install -c conda-forge \
     tqdm \
     colorcet \
     seaborn \
-    networkx
+    networkx \
+    bokeh \
+    datashader \
+
+RUN conda install -c ioam holoviews
+RUN conda install -c pyviz geoviews
 
 ## Image Processing
 RUN conda install -c conda-forge \
