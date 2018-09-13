@@ -1,4 +1,4 @@
-# subsurface-ml-docker [![Build Status](https://travis-ci.org/JesperDramsch/geo-docker.svg?branch=master)](https://travis-ci.org/JesperDramsch/geo-docker)
+# subsurface-ml-docker [![Build Status](https://travis-ci.org/softwareunderground/subsurface-ml-docker.svg?branch=master)](https://travis-ci.org/softwareunderground/subsurface-ml-docker)
 __A docker image fully loaded with Sufurface & ML related packages.__
 
 This is a very easy way to bring up a GPU capable ML environment on a linux machine. 
@@ -36,7 +36,7 @@ The fastest way to start is to pull the image from dockerhub. Note this can stil
 
  1. run the container - the following command will start the container in the background (you can exit the terminal session and the continer will keep running) and map a single local folder onto the container
         
-        setsid docker run -it -v <insert-local-path>:/home/geo/workspace --net=host --env KERAS_BACKEND=tensorflow subsurface-ml-docker
+        setsid nvidia-docker run -it -v <insert-local-path>:/home/geo/workspace --net=host --env KERAS_BACKEND=tensorflow subsurface-ml-docker
     
     1. mapping a local folder - change the `<insert-local-path>` for a valid local path to your source code directory containing repos, notebooks etc that you want to run. That folder will mounted at `/home/geo/workspace` on the continer
     1. map additional folders - add additional `-v <insert-local-path>:/home/geo/<mount-folder>` arguments to the commamnd to mount additional folders on the container
