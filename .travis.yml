@@ -2,8 +2,6 @@ sudo: true
 dist: trusty
 
 language: python
-ignore:
-  - *.md
   
 env:
   - KERAS_BACKEND=tensorflow
