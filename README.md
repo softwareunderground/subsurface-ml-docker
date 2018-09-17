@@ -25,18 +25,20 @@ The fastest way to start is to pull the image from dockerhub. Note this can stil
             sudo apt-get update
      1. install latest driver (e.g. v396)
 
-            sudo apt-get nvidia-graphics-drivers-396
+            sudo apt-get nvidia-396 nvidia-settings
+
+     1. Reboot
 
  1. Install `nvidia-docker 2.0` [docs](https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0))
 
 ## Running the container and connecting
- 1. pull the image from docker hub (the image is huge, this will take some time)
+ 1. pull the image from docker hub (the image is big, this will take some time, takes aout 5 min on EC2)
 
         docker pull softwareundergroud/subsurface-ml-docker
 
  1. run the container - the following command will start the container in the background (you can exit the terminal session and the continer will keep running) and map a single local folder onto the container
         
-        setsid nvidia-docker run -it -v <insert-local-path>:/home/geo/workspace --net=host --env KERAS_BACKEND=tensorflow subsurface-ml-docker
+        setsid nvidia-docker run -it -v <insert-local-path>:/home/geo/workspace --net=host --env KERAS_BACKEND=tensorflow softwareunderground/subsurface-ml-docker
     
     1. mapping a local folder - change the `<insert-local-path>` for a valid local path to your source code directory containing repos, notebooks etc that you want to run. That folder will mounted at `/home/geo/workspace` on the continer
     1. map additional folders - add additional `-v <insert-local-path>:/home/geo/<mount-folder>` arguments to the commamnd to mount additional folders on the container
