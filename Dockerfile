@@ -128,6 +128,7 @@ RUN conda install -c conda-forge \
     && conda clean -ya
 
 RUN pip install git+https://github.com/pytorch/tnt.git@master
+RUN pip install torchsummary
 
 # keras
 RUN git clone git://github.com/keras-team/keras.git /src && pip install -e /src[tests] && \
