@@ -34,7 +34,7 @@ The fastest way to start is to pull the image from dockerhub. Note this can stil
 ## Running the container and connecting
  1. pull the image from docker hub (the image is big, this will take some time, takes aout 5 min on EC2)
 
-        docker pull softwareundergroud/subsurface-ml-docker
+        docker pull softwareunderground/subsurface-ml-docker
 
  1. run the container - the following command will start the container in the background (you can exit the terminal session and the continer will keep running) and map a single local folder onto the container
         
