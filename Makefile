@@ -22,7 +22,7 @@ ipython: build
 	$(DOCKER) run -it -v $(SRC):/home/geo/workspace --env KERAS_BACKEND=$(BACKEND) subsurface-ml-docker ipython
 
 notebook: build
-	$(DOCKER) run -it -v $(SRC):/home/geo/workspace --net=host --env KERAS_BACKEND=$(BACKEND) subsurface-ml-docker
+	$(DOCKER) run -it -v $(SRC):/home/geo/workspace -v $(DATA):/home/geo/data --net=host --env KERAS_BACKEND=$(BACKEND) subsurface-ml-docker
 
 test: build
 	$(DOCKER) run -it -v $(SRC):/home/geo/workspace --env KERAS_BACKEND=$(BACKEND) subsurface-ml-docker smoke.py $(TEST)
