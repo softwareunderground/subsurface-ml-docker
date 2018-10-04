@@ -23,9 +23,9 @@ The fastest way to start is to pull the image from dockerhub. Note this can stil
 
             sudo add-apt-repository ppa:graphics-drivers/ppa
             sudo apt-get update
-     1. install latest driver (e.g. v396)
+     1. install latest driver (e.g. v390)
 
-            sudo apt-get nvidia-396 nvidia-settings
+            sudo apt-get install nvidia-390 nvidia-settings
 
      1. Reboot
 
