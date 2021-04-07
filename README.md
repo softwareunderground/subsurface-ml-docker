@@ -1,5 +1,5 @@
 # subsurface-ml-docker [![Build Status](https://travis-ci.org/softwareunderground/subsurface-ml-docker.svg?branch=master)](https://travis-ci.org/softwareunderground/subsurface-ml-docker)
-__A docker image fully loaded with Sufurface & ML related packages.__
+__A docker image fully loaded with Subsurface & ML related packages.__
 
 This is a very easy way to bring up a GPU capable ML environment on a linux machine. 
 
